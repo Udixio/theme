@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/Udixio/theme/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2024-07-23)
+
+
+### Features
+
+* configure package for public access ([9a25998](https://github.com/Udixio/theme/commit/9a2599806a3ad39a099a34a99a8e68b04e3b9f4c))
+
 # 1.0.0-beta.1 (2024-07-23)
 
 
