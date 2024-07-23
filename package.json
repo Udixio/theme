@@ -1,6 +1,6 @@
 {
   "name": "@udixio/theme",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.1",
   "license": "MIT",
   "author": "vigreux-joël",
   "main": "dist/index.js",
