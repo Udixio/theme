@@ -5,19 +5,20 @@ import { SchemeEntity } from '../theme/entities/scheme.entity';
 
 import { ColorEntity, ColorOptions } from './entities/color.entity';
 import { SchemeService } from '../theme/services/scheme.service';
-import {DynamicColorKey} from "./models/default-color.model";
-import {ColorService} from "./color.service";
-
+import { DynamicColorKey } from './models/default-color.model';
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export const highestSurface = (s: SchemeEntity, colorManagerService: ColorManagerService): DynamicColor => {
+export const highestSurface = (
+  s: SchemeEntity,
+  colorManagerService: ColorManagerService
+): DynamicColor => {
   return s.isDark
-      ? colorManagerService.get('surfaceBright').getDynamicColor()
-      : colorManagerService.get('surfaceDim').getDynamicColor();
-}
+    ? colorManagerService.get('surfaceBright').getDynamicColor()
+    : colorManagerService.get('surfaceDim').getDynamicColor();
+};
 
 @Injectable()
 export class ColorManagerService {

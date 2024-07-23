@@ -5,9 +5,7 @@ import { ColorEntity, ColorOptions } from './entities/color.entity';
 
 @Injectable()
 export class ColorService implements ColorInterface {
-  constructor(
-    private colorManagerService: ColorManagerService
-  ) {}
+  constructor(private colorManagerService: ColorManagerService) {}
 
   getAllColors() {
     return this.colorManagerService.getAll();

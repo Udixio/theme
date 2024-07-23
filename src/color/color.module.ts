@@ -5,7 +5,7 @@ import { ThemeModule } from '../theme/theme.module';
 
 @Module({
   imports: [ThemeModule],
-  providers: [ ColorService, ColorManagerService],
+  providers: [ColorService, ColorManagerService],
   exports: [ColorService],
 })
 export class ColorModule {}
