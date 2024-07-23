@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { DefaultColorModel } from './models/default-color.model';
 import { ColorManagerService } from './color-manager.service';
 import { ColorInterface } from './color.interface';
 import { ColorEntity, ColorOptions } from './entities/color.entity';
@@ -7,7 +6,6 @@ import { ColorEntity, ColorOptions } from './entities/color.entity';
 @Injectable()
 export class ColorService implements ColorInterface {
   constructor(
-    private defaultColorModel: DefaultColorModel,
     private colorManagerService: ColorManagerService
   ) {}
 
@@ -24,15 +22,15 @@ export class ColorService implements ColorInterface {
   //
   //   return colors;
   // }
-
-  addBaseColors() {
-    this.colorManagerService.addFromPalette('primary');
-    this.colorManagerService.addFromPalette('secondary');
-    this.colorManagerService.addFromPalette('tertiary');
-    for (const [key, value] of Object.entries(this.defaultColorModel.colors)) {
-      this.colorManagerService.createOrUpdate(key, value as any);
-    }
-  }
+  //
+  // addBaseColors() {
+  //   this.colorManagerService.addFromPalette('primary');
+  //   this.colorManagerService.addFromPalette('secondary');
+  //   this.colorManagerService.addFromPalette('tertiary');
+  //   for (const [key, value] of Object.entries(this.defaultColorModel.colors)) {
+  //     this.colorManagerService.createOrUpdate(key, value as any);
+  //   }
+  // }
 
   addColor(key: string, color: ColorOptions): ColorEntity {
     return this.colorManagerService.createOrUpdate(key, color);

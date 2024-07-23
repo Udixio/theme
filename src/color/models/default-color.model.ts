@@ -3,7 +3,8 @@ import { ContrastCurve, ToneDeltaPair } from '../../material-color-utilities';
 import { DynamicColor } from '../../material-color-utilities/dynamic_color';
 import { Injectable } from '@nestjs/common';
 import { ColorOptions } from '../entities/color.entity';
-import { ColorManagerService } from '../color-manager.service';
+import {ColorManagerService, highestSurface} from '../color-manager.service';
+import {ColorService} from "../color.service";
 
 export type DynamicColorKey =
   | 'background'
@@ -89,11 +90,10 @@ function findDesiredChromaByTone(
   return answer;
 }
 
-@Injectable()
-export class DefaultColorModel {
-  colors: Partial<
+export const DefaultColors = (colorManagerService: ColorManagerService): Partial<
     Record<DynamicColorKey, Partial<Omit<ColorOptions, 'name'>>>
-  > = {
+> => ({
+
     background: {
       palette: (s) => s.getPalette('neutral'),
       tone: (s) => (s.isDark ? 6 : 98),
@@ -103,7 +103,7 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('neutral'),
       tone: (s) => (s.isDark ? 90 : 10),
       background: (s) =>
-        this.dynamicColorService.get('background').getDynamicColor(),
+        colorManagerService.get('background').getDynamicColor(),
       contrastCurve: new ContrastCurve(3, 3, 4.5, 7),
     },
     surface: {
@@ -149,7 +149,7 @@ export class DefaultColorModel {
     onSurface: {
       palette: (s) => s.getPalette('neutral'),
       tone: (s) => (s.isDark ? 90 : 10),
-      background: (s) => this.dynamicColorService.highestSurface(s),
+      background: (s) =>  highestSurface(s, colorManagerService),
       contrastCurve: new ContrastCurve(4.5, 7, 11, 21),
     },
     surfaceVariant: {
@@ -160,7 +160,7 @@ export class DefaultColorModel {
     onSurfaceVariant: {
       palette: (s) => s.getPalette('neutralVariant'),
       tone: (s) => (s.isDark ? 80 : 30),
-      background: (s) => this.dynamicColorService.highestSurface(s),
+      background: (s) =>  highestSurface(s, colorManagerService),
       contrastCurve: new ContrastCurve(3, 4.5, 7, 11),
     },
     inverseSurface: {
@@ -171,19 +171,19 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('neutral'),
       tone: (s) => (s.isDark ? 20 : 95),
       background: (s) =>
-        this.dynamicColorService.get('inverseSurface').getDynamicColor(),
+        colorManagerService.get('inverseSurface').getDynamicColor(),
       contrastCurve: new ContrastCurve(4.5, 7, 11, 21),
     },
     outline: {
       palette: (s) => s.getPalette('neutralVariant'),
       tone: (s) => (s.isDark ? 60 : 50),
-      background: (s) => this.dynamicColorService.highestSurface(s),
+      background: (s) => highestSurface(s, colorManagerService),
       contrastCurve: new ContrastCurve(1.5, 3, 4.5, 7),
     },
     outlineVariant: {
       palette: (s) => s.getPalette('neutralVariant'),
       tone: (s) => (s.isDark ? 30 : 80),
-      background: (s) => this.dynamicColorService.highestSurface(s),
+      background: (s) =>  highestSurface(s, colorManagerService),
       contrastCurve: new ContrastCurve(1, 1, 3, 7),
     },
     shadow: {
@@ -213,7 +213,7 @@ export class DefaultColorModel {
     onSecondaryContainer: {
       tone: (s) => {
         return DynamicColor.foregroundTone(
-          this.dynamicColorService
+          colorManagerService
             .get('secondaryContainer')
             .getDynamicColor()
             .tone(s),
@@ -234,8 +234,7 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('tertiary'),
       tone: (s) => {
         return DynamicColor.foregroundTone(
-          this.dynamicColorService
-            .get('tertiaryContainer')
+          colorManagerService.get('tertiaryContainer')
             .getDynamicColor()
             .tone(s),
           4.5
@@ -246,12 +245,12 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('error'),
       tone: (s) => (s.isDark ? 80 : 40),
       isBackground: true,
-      background: (s) => this.dynamicColorService.highestSurface(s),
+      background: (s) => highestSurface(s, colorManagerService),
       contrastCurve: new ContrastCurve(3, 4.5, 7, 11),
       toneDeltaPair: (s) =>
         new ToneDeltaPair(
-          this.dynamicColorService.get('errorContainer').getDynamicColor(),
-          this.dynamicColorService.get('error').getDynamicColor(),
+          colorManagerService.get('errorContainer').getDynamicColor(),
+          colorManagerService.get('error').getDynamicColor(),
           15,
           'nearer',
           false
@@ -261,19 +260,19 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('error'),
       tone: (s) => (s.isDark ? 20 : 100),
       background: (s) =>
-        this.dynamicColorService.get('error').getDynamicColor(),
+        colorManagerService.get('error').getDynamicColor(),
       contrastCurve: new ContrastCurve(4.5, 7, 11, 21),
     },
     errorContainer: {
       palette: (s) => s.getPalette('error'),
       tone: (s) => (s.isDark ? 30 : 90),
       isBackground: true,
-      background: (s) => this.dynamicColorService.highestSurface(s),
+      background: (s) => highestSurface(s, colorManagerService),
       contrastCurve: new ContrastCurve(1, 1, 3, 7),
       toneDeltaPair: (s) =>
         new ToneDeltaPair(
-          this.dynamicColorService.get('errorContainer').getDynamicColor(),
-          this.dynamicColorService.get('error').getDynamicColor(),
+          colorManagerService.get('errorContainer').getDynamicColor(),
+          colorManagerService.get('error').getDynamicColor(),
           15,
           'nearer',
           false
@@ -283,7 +282,7 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('error'),
       tone: (s) => (s.isDark ? 90 : 10),
       background: (s) =>
-        this.dynamicColorService.get('errorContainer').getDynamicColor(),
+        colorManagerService.get('errorContainer').getDynamicColor(),
       contrastCurve: new ContrastCurve(4.5, 7, 11, 21),
     },
 
@@ -291,21 +290,20 @@ export class DefaultColorModel {
       palette: (s) => s.getPalette('tertiary'),
       tone: (s) => 10.0,
       background: (s) =>
-        this.dynamicColorService.get('tertiaryFixedDim').getDynamicColor(),
+        colorManagerService.get('tertiaryFixedDim').getDynamicColor(),
       secondBackground: (s) =>
-        this.dynamicColorService.get('tertiaryFixed').getDynamicColor(),
+        colorManagerService.get('tertiaryFixed').getDynamicColor(),
       contrastCurve: new ContrastCurve(4.5, 7, 11, 21),
     },
     onTertiaryFixedVariant: {
       palette: (s) => s.getPalette('tertiary'),
       tone: (s) => 30.0,
       background: (s) =>
-        this.dynamicColorService.get('tertiaryFixedDim').getDynamicColor(),
+        colorManagerService.get('tertiaryFixedDim').getDynamicColor(),
       secondBackground: (s) =>
-        this.dynamicColorService.get('tertiaryFixed').getDynamicColor(),
+        colorManagerService.get('tertiaryFixed').getDynamicColor(),
       contrastCurve: new ContrastCurve(3, 4.5, 7, 11),
     },
-  };
+  })
 
-  constructor(private dynamicColorService: ColorManagerService) {}
-}
+

@@ -5,60 +5,18 @@ import { SchemeEntity } from '../theme/entities/scheme.entity';
 
 import { ColorEntity, ColorOptions } from './entities/color.entity';
 import { SchemeService } from '../theme/services/scheme.service';
+import {DynamicColorKey} from "./models/default-color.model";
+import {ColorService} from "./color.service";
 
-export type DynamicColorKey =
-  | 'background'
-  | 'onBackground'
-  | 'surface'
-  | 'surfaceDim'
-  | 'surfaceBright'
-  | 'surfaceContainerLowest'
-  | 'surfaceContainerLow'
-  | 'surfaceContainer'
-  | 'surfaceContainerHigh'
-  | 'surfaceContainerHighest'
-  | 'onSurface'
-  | 'surfaceVariant'
-  | 'onSurfaceVariant'
-  | 'inverseSurface'
-  | 'inverseOnSurface'
-  | 'outline'
-  | 'outlineVariant'
-  | 'shadow'
-  | 'scrim'
-  | 'surfaceTint'
-  | 'primary'
-  | 'onPrimary'
-  | 'primaryContainer'
-  | 'onPrimaryContainer'
-  | 'inversePrimary'
-  | 'secondary'
-  | 'onSecondary'
-  | 'secondaryContainer'
-  | 'onSecondaryContainer'
-  | 'tertiary'
-  | 'onTertiary'
-  | 'tertiaryContainer'
-  | 'onTertiaryContainer'
-  | 'error'
-  | 'onError'
-  | 'errorContainer'
-  | 'onErrorContainer'
-  | 'primaryFixed'
-  | 'primaryFixedDim'
-  | 'onPrimaryFixed'
-  | 'onPrimaryFixedVariant'
-  | 'secondaryFixed'
-  | 'secondaryFixedDim'
-  | 'onSecondaryFixed'
-  | 'onSecondaryFixedVariant'
-  | 'tertiaryFixed'
-  | 'tertiaryFixedDim'
-  | 'onTertiaryFixed'
-  | 'onTertiaryFixedVariant';
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const highestSurface = (s: SchemeEntity, colorManagerService: ColorManagerService): DynamicColor => {
+  return s.isDark
+      ? colorManagerService.get('surfaceBright').getDynamicColor()
+      : colorManagerService.get('surfaceDim').getDynamicColor();
 }
 
 @Injectable()
@@ -107,12 +65,6 @@ export class ColorManagerService {
     return this.colorMap;
   }
 
-  highestSurface(s: SchemeEntity): DynamicColor {
-    return s.isDark
-      ? this.get('surfaceBright').getDynamicColor()
-      : this.get('surfaceDim').getDynamicColor();
-  }
-
   addFromPalette(key: string): void {
     const colorKey = key as DynamicColorKey;
     const ColorKey = capitalizeFirstLetter(key);
@@ -135,7 +87,7 @@ export class ColorManagerService {
         return s.isDark ? 80 : 40;
       },
       isBackground: true,
-      background: (s) => this.highestSurface(s),
+      background: (s) => highestSurface(s, this),
       contrastCurve: new ContrastCurve(3, 4.5, 7, 11),
       toneDeltaPair: (s) =>
         new ToneDeltaPair(
@@ -160,7 +112,7 @@ export class ColorManagerService {
         return s.isDark ? 30 : 90;
       },
       isBackground: true,
-      background: (s) => this.highestSurface(s),
+      background: (s) => highestSurface(s, this),
       contrastCurve: new ContrastCurve(1, 1, 3, 7),
       toneDeltaPair: (s) =>
         new ToneDeltaPair(
@@ -189,7 +141,7 @@ export class ColorManagerService {
       palette: (s) => s.getPalette(key),
       tone: (s) => 90.0,
       isBackground: true,
-      background: (s) => this.highestSurface(s),
+      background: (s) => highestSurface(s, this),
       contrastCurve: new ContrastCurve(1, 1, 3, 7),
       toneDeltaPair: (s) =>
         new ToneDeltaPair(
@@ -204,7 +156,7 @@ export class ColorManagerService {
       palette: (s) => s.getPalette(key),
       tone: (s) => 80.0,
       isBackground: true,
-      background: (s) => this.highestSurface(s),
+      background: (s) => highestSurface(s, this),
       contrastCurve: new ContrastCurve(1, 1, 3, 7),
       toneDeltaPair: (s) =>
         new ToneDeltaPair(
