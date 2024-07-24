@@ -2,7 +2,6 @@ import { hexFromArgb, TonalPalette } from '@material/material-color-utilities';
 import { SchemeEntity } from '../../theme/entities/scheme.entity';
 import { DynamicColor } from '../../material-color-utilities/dynamic_color';
 import { ContrastCurve } from '../../material-color-utilities';
-import mergeDeep from 'merge-deep';
 import { SchemeService } from '../../theme/services/scheme.service';
 import { ColorManagerService } from '../color-manager.service';
 
@@ -33,7 +32,7 @@ export class ColorEntity {
 
   update(args: Partial<ColorOptions & { name: string }>) {
     this.dynamicColor = null;
-    this.option = mergeDeep(this.option, args);
+    this.option = { ...this.option, ...args };
   }
 
   getHex(): string {

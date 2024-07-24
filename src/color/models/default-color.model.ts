@@ -88,9 +88,9 @@ function findDesiredChromaByTone(
   return answer;
 }
 
-export const DefaultColors = (
+export const defaultColors = (
   colorManagerService: ColorManagerService
-): Partial<Record<DynamicColorKey, Partial<Omit<ColorOptions, 'name'>>>> => ({
+): Partial<Record<DynamicColorKey, Partial<ColorOptions>>> => ({
   background: {
     palette: (s) => s.getPalette('neutral'),
     tone: (s) => (s.isDark ? 6 : 98),

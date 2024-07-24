@@ -25,10 +25,7 @@ export class ColorManagerService {
   private colorMap = new Map<string, ColorEntity>();
   constructor(private schemeService: SchemeService) {}
 
-  createOrUpdate(
-    key: string,
-    args: Partial<Omit<ColorOptions, 'name'>>
-  ): ColorEntity {
+  createOrUpdate(key: string, args: Partial<ColorOptions>): ColorEntity {
     let colorEntity = this.colorMap.get(key);
     if (!colorEntity) {
       const { palette, tone } = args;

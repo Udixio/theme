@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ColorManagerService } from './color-manager.service';
 import { ColorInterface } from './color.interface';
 import { ColorEntity, ColorOptions } from './entities/color.entity';
+import { defaultColors, DynamicColorKey } from './models/default-color.model';
 
 @Injectable()
 export class ColorService implements ColorInterface {
@@ -20,15 +21,20 @@ export class ColorService implements ColorInterface {
   //
   //   return colors;
   // }
-  //
-  // addBaseColors() {
-  //   this.colorManagerService.addFromPalette('primary');
-  //   this.colorManagerService.addFromPalette('secondary');
-  //   this.colorManagerService.addFromPalette('tertiary');
-  //   for (const [key, value] of Object.entries(this.defaultColorModel.colors)) {
-  //     this.colorManagerService.createOrUpdate(key, value as any);
-  //   }
-  // }
+
+  addBaseColors() {
+    this.colorManagerService.addFromPalette('primary');
+    this.colorManagerService.addFromPalette('secondary');
+    this.colorManagerService.addFromPalette('tertiary');
+
+    const colors = defaultColors(this.colorManagerService);
+    Object.keys(colors).map((key) => {
+      const color: Partial<ColorOptions> | undefined =
+        colors[key as DynamicColorKey];
+      if (!color) return;
+      return this.colorManagerService.createOrUpdate(key, color);
+    });
+  }
 
   addColor(key: string, color: ColorOptions): ColorEntity {
     return this.colorManagerService.createOrUpdate(key, color);

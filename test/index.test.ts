@@ -137,12 +137,6 @@ describe('AppController (e2e)', () => {
       isBackground: true,
     });
 
-    console.log(
-      [...colorService.getAllColors().values()].map((colorEntity) => ({
-        name: colorEntity.getName(),
-        hex: colorEntity.getHex(),
-      }))
-    );
     themeService.update({
       sourceColorHex: '#3eee31',
     });

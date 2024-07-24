@@ -21,7 +21,7 @@ export class SchemeService {
   private options?: SchemeServiceOptions;
 
   createOrUpdate(options: Partial<SchemeServiceOptions>) {
-    this.options = mergeDeep(this.options, options);
+    this.options = mergeDeep(options, this.options);
     const palettes = new Map<string, TonalPalette>();
 
     const sourceColorArgb = argbFromHex(this.options.sourceColorHex);
