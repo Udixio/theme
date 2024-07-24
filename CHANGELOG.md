@@ -1,3 +1,10 @@
+# [1.0.0-beta.4](https://github.com/Udixio/theme/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2024-07-24)
+
+
+### Bug Fixes
+
+* update module paths in package.json ([dc8ac03](https://github.com/Udixio/theme/commit/dc8ac03c86703a89d36f4858f4d737fc728b777a))
+
 # [1.0.0-beta.3](https://github.com/Udixio/theme/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2024-07-24)
 
 
