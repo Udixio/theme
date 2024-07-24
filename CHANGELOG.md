@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/Udixio/theme/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2024-07-24)
+
+
+### Bug Fixes
+
+* update a color did not merge it completely ([d7ad6b8](https://github.com/Udixio/theme/commit/d7ad6b887a23924a72b74d12eb1551c1c836d47a))
+
 # [1.0.0-beta.2](https://github.com/Udixio/theme/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2024-07-23)
 
 
