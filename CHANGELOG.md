@@ -1,3 +1,10 @@
+# [1.0.0-beta.5](https://github.com/Udixio/theme/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2024-07-24)
+
+
+### Features
+
+* add export ([5f209aa](https://github.com/Udixio/theme/commit/5f209aa482ebae309bcabe957660d6d8582c3a1e))
+
 # [1.0.0-beta.4](https://github.com/Udixio/theme/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2024-07-24)
 
 
