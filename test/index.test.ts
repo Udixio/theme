@@ -1,20 +1,27 @@
-import { main } from '../src';
-import { ContrastCurve, ToneDeltaPair } from '../src/material-color-utilities';
+// import { main } from '../src';
+import { ContrastCurve, main, ToneDeltaPair } from '../src';
 import {
   sanitizeDegreesDouble,
   TonalPalette,
 } from '@material/material-color-utilities';
 
 describe('AppController (e2e)', () => {
+  it('ff', () => {
+    console.log(main());
+  });
+
   it('/ (GET)', async () => {
     let sourceColorHex = '#0965EC';
-    const [{ colorService, themeService }, close] = await main();
+    const { colorService, themeService } = main();
+    console.log('colorService', colorService);
 
     themeService.create({
       contrastLevel: 0,
       isDark: false,
       sourceColorHex,
     });
+
+    colorService.addBaseColors();
 
     themeService.addVariant({
       palettes: {
@@ -147,6 +154,5 @@ describe('AppController (e2e)', () => {
         hex: colorEntity.getHex(),
       }))
     );
-    await close();
   });
 });

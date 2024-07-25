@@ -1,12 +1,17 @@
-import { Injectable } from '@nestjs/common';
 import { ColorManagerService } from './color-manager.service';
 import { ColorInterface } from './color.interface';
 import { ColorEntity, ColorOptions } from './entities/color.entity';
 import { defaultColors, DynamicColorKey } from './models/default-color.model';
 
-@Injectable()
 export class ColorService implements ColorInterface {
-  constructor(private colorManagerService: ColorManagerService) {}
+  private readonly colorManagerService: ColorManagerService;
+  constructor({
+    colorManagerService,
+  }: {
+    colorManagerService: ColorManagerService;
+  }) {
+    this.colorManagerService = colorManagerService;
+  }
 
   getAllColors() {
     return this.colorManagerService.getAll();

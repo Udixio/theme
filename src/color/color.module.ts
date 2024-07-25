@@ -1,11 +1,9 @@
 import { ColorService } from './color.service';
-import { Module } from '@nestjs/common';
 import { ColorManagerService } from './color-manager.service';
-import { ThemeModule } from '../theme/theme.module';
+import { asClass } from 'awilix';
+import { Module } from '../app.container';
 
-@Module({
-  imports: [ThemeModule],
-  providers: [ColorService, ColorManagerService],
-  exports: [ColorService],
-})
-export class ColorModule {}
+export const ColorModule: Module = {
+  colorManagerService: asClass(ColorManagerService).singleton(),
+  colorService: asClass(ColorService).singleton(),
+};

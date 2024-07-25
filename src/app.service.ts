@@ -1,11 +1,17 @@
-import { Injectable } from '@nestjs/common';
 import { ColorService } from './color/color.service';
 import { ThemeService } from './theme/services/theme.service';
 
-@Injectable()
 export class AppService {
-  constructor(
-    public colorService: ColorService,
-    public themeService: ThemeService
-  ) {}
+  public colorService: ColorService;
+  public themeService: ThemeService;
+  constructor({
+    colorService,
+    themeService,
+  }: {
+    colorService: ColorService;
+    themeService: ThemeService;
+  }) {
+    this.colorService = colorService;
+    this.themeService = themeService;
+  }
 }

@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
 import { ContrastCurve, ToneDeltaPair } from '../material-color-utilities';
 import { DynamicColor } from '../material-color-utilities/dynamic_color';
 import { SchemeEntity } from '../theme/entities/scheme.entity';
@@ -20,10 +19,12 @@ export const highestSurface = (
     : colorManagerService.get('surfaceDim').getDynamicColor();
 };
 
-@Injectable()
 export class ColorManagerService {
   private colorMap = new Map<string, ColorEntity>();
-  constructor(private schemeService: SchemeService) {}
+  private readonly schemeService: SchemeService;
+  constructor({ schemeService }: { schemeService: SchemeService }) {
+    this.schemeService = schemeService;
+  }
 
   createOrUpdate(key: string, args: Partial<ColorOptions>): ColorEntity {
     let colorEntity = this.colorMap.get(key);

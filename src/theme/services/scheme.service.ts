@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
 import { SchemeEntity, SchemeOptions } from '../entities/scheme.entity';
 import {
   argbFromHex,
@@ -15,7 +14,6 @@ export type SchemeServiceOptions = Omit<
   palettes: Record<string, (sourceColorHct: Hct) => TonalPalette>;
 };
 
-@Injectable()
 export class SchemeService {
   private schemeEntity?: SchemeEntity;
   private options?: SchemeServiceOptions;

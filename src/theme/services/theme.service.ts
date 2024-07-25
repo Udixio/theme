@@ -1,5 +1,4 @@
 import { DynamicColor } from '@material/material-color-utilities';
-import { Injectable } from '@nestjs/common';
 import { SchemeService, SchemeServiceOptions } from './scheme.service';
 import { VariantService } from './variant.service';
 import { VariantEntity } from '../entities/variant.entity';
@@ -12,12 +11,19 @@ const colorPaletteKeyColor = DynamicColor.fromPalette({
   tone: (s) => s.primaryPalette.keyColor.tone,
 });
 
-@Injectable()
 export class ThemeService {
-  constructor(
-    private schemeService: SchemeService,
-    private variantService: VariantService
-  ) {
+  private readonly schemeService: SchemeService;
+  private readonly variantService: VariantService;
+  constructor({
+    schemeService,
+    variantService,
+  }: {
+    schemeService: SchemeService;
+    variantService: VariantService;
+  }) {
+    this.schemeService = schemeService;
+    this.variantService = variantService;
+
     // this.addPalette({key: "primary", addDefaultColors: true})
     // this.addPalette({key: "secondary", addDefaultColors: true})
     // this.addPalette({key: "tertiary", addDefaultColors: true})
