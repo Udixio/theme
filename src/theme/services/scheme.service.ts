@@ -4,7 +4,6 @@ import {
   Hct,
   TonalPalette,
 } from '@material/material-color-utilities';
-import mergeDeep from 'merge-deep';
 
 export type SchemeServiceOptions = Omit<
   SchemeOptions,
@@ -19,7 +18,14 @@ export class SchemeService {
   private options?: SchemeServiceOptions;
 
   createOrUpdate(options: Partial<SchemeServiceOptions>) {
-    this.options = mergeDeep(options, this.options);
+    this.options = {
+      ...this.options,
+      ...options,
+      palettes: {
+        ...this.options?.palettes,
+        ...options.palettes,
+      },
+    } as SchemeServiceOptions;
     const palettes = new Map<string, TonalPalette>();
 
     const sourceColorArgb = argbFromHex(this.options.sourceColorHex);
