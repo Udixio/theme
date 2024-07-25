@@ -1,3 +1,10 @@
+# [1.0.0-beta.6](https://github.com/Udixio/theme/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2024-07-25)
+
+
+### Features
+
+* migrate nestjs standalone to awilix ([ab3d96c](https://github.com/Udixio/theme/commit/ab3d96ceaf7445a63dc0cb2e5dc39d460ffc16c4))
+
 # [1.0.0-beta.5](https://github.com/Udixio/theme/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2024-07-24)
 
 
