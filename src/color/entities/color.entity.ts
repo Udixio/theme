@@ -3,7 +3,7 @@ import { SchemeEntity } from '../../theme/entities/scheme.entity';
 import { DynamicColor } from '../../material-color-utilities/dynamic_color';
 import { ContrastCurve } from '../../material-color-utilities';
 import { SchemeService } from '../../theme/services/scheme.service';
-import { ColorManagerService } from '../color-manager.service';
+import { ColorManagerService } from '../services/color-manager.service';
 
 export interface ColorOptions {
   palette: (scheme: SchemeEntity) => TonalPalette;

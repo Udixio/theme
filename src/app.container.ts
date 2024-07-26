@@ -8,6 +8,7 @@ import {
 import { ColorModule } from './color/color.module';
 import { ThemeModule } from './theme/theme.module';
 import { AppModule } from './app.module';
+import { ConfigModule } from './config/config.module';
 
 export type Module = Record<
   string,
@@ -30,7 +31,12 @@ const AppContainer = createContainer({
   injectionMode: InjectionMode.PROXY,
 });
 
-importContainer(AppContainer, [AppModule, ColorModule, ThemeModule]);
+importContainer(AppContainer, [
+  AppModule,
+  ConfigModule,
+  ColorModule,
+  ThemeModule,
+]);
 
 // AppContainer.register(ColorModule.cradle);
 // AppContainer.register(ThemeModule.cradle);

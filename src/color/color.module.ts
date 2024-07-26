@@ -1,5 +1,5 @@
-import { ColorService } from './color.service';
-import { ColorManagerService } from './color-manager.service';
+import { ColorService } from './services/color.service';
+import { ColorManagerService } from './services/color-manager.service';
 import { asClass } from 'awilix';
 import { Module } from '../app.container';
 

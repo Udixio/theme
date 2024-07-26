@@ -10,6 +10,4 @@ export interface ColorInterface {
   updateColor(key: string, newColor: ColorOptions): ColorEntity;
 
   getAllColors(): ReadonlyMap<string, ColorEntity>;
-
-  addColors(colors: Record<string, ColorOptions>): ColorEntity[];
 }

@@ -1,10 +1,11 @@
-import { ContrastCurve, ToneDeltaPair } from '../material-color-utilities';
-import { DynamicColor } from '../material-color-utilities/dynamic_color';
-import { SchemeEntity } from '../theme/entities/scheme.entity';
+import { ContrastCurve, ToneDeltaPair } from '../../material-color-utilities';
+import { DynamicColor } from '../../material-color-utilities/dynamic_color';
+import { SchemeEntity } from '../../theme/entities/scheme.entity';
 
-import { ColorEntity, ColorOptions } from './entities/color.entity';
-import { SchemeService } from '../theme/services/scheme.service';
-import { DynamicColorKey } from './models/default-color.model';
+import { ColorEntity, ColorOptions } from '../entities/color.entity';
+import { SchemeService } from '../../theme/services/scheme.service';
+import { DynamicColorKey } from '../models/default-color.model';
+import { ColorService } from './color.service';
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -12,11 +13,17 @@ function capitalizeFirstLetter(string: string) {
 
 export const highestSurface = (
   s: SchemeEntity,
-  colorManagerService: ColorManagerService
+  colorService: ColorManagerService | ColorService
 ): DynamicColor => {
-  return s.isDark
-    ? colorManagerService.get('surfaceBright').getDynamicColor()
-    : colorManagerService.get('surfaceDim').getDynamicColor();
+  if (colorService instanceof ColorService) {
+    return s.isDark
+      ? colorService.getColor('surfaceBright').getDynamicColor()
+      : colorService.getColor('surfaceDim').getDynamicColor();
+  } else {
+    return s.isDark
+      ? colorService.get('surfaceBright').getDynamicColor()
+      : colorService.get('surfaceDim').getDynamicColor();
+  }
 };
 
 export class ColorManagerService {

@@ -3,7 +3,10 @@ import { SchemeService, SchemeServiceOptions } from './scheme.service';
 import { VariantService } from './variant.service';
 import { VariantEntity } from '../entities/variant.entity';
 
-type ThemeOptions = Omit<SchemeServiceOptions, 'palettes'>;
+type ThemeOptions = Omit<
+  SchemeServiceOptions,
+  'palettes' | 'sourcesColorHex'
+> & { sourceColorHex: string };
 
 const colorPaletteKeyColor = DynamicColor.fromPalette({
   name: 'primary_palette_key_color',
@@ -47,16 +50,23 @@ export class ThemeService {
   //   return this.theme();
   // }
 
-  create(options: ThemeOptions) {
-    this.schemeService.createOrUpdate(options);
+  create(options: ThemeOptions & { variant: VariantEntity }) {
+    this.schemeService.createOrUpdate({
+      ...options,
+      sourcesColorHex: { primary: options.sourceColorHex },
+    });
+    this.variantService.set(options.variant);
   }
 
-  addVariant(variant: VariantEntity) {
-    this.variantService.set(variant);
+  update(options: Partial<ThemeOptions> & { variant?: VariantEntity }) {
+    const themeOptions: Partial<SchemeServiceOptions> = { ...options };
+    if (options.sourceColorHex)
+      themeOptions.sourcesColorHex = { primary: options.sourceColorHex };
+    this.schemeService.createOrUpdate(themeOptions);
+    if (options.variant) this.variantService.set(options.variant);
   }
-
-  update(options: Partial<ThemeOptions>) {
-    this.schemeService.createOrUpdate(options);
+  addCustomPalette(key: string, colorHex: string) {
+    this.variantService.addCustomPalette(key, colorHex);
   }
   // theme(): SchemeService {
   //   return new SchemeService(this.themeOptions, this.colorService)

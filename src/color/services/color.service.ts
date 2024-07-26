@@ -1,7 +1,15 @@
 import { ColorManagerService } from './color-manager.service';
-import { ColorInterface } from './color.interface';
-import { ColorEntity, ColorOptions } from './entities/color.entity';
-import { defaultColors, DynamicColorKey } from './models/default-color.model';
+import { ColorInterface } from '../color.interface';
+import { ColorEntity, ColorOptions } from '../entities';
+
+type AddColors = {
+  colors?: Record<string, Partial<ColorOptions>>;
+  fromPalettes?: string[] | string;
+};
+
+export type AddColorsOptions =
+  | AddColors
+  | ((colorService: ColorService) => AddColors);
 
 export class ColorService implements ColorInterface {
   private readonly colorManagerService: ColorManagerService;
@@ -27,26 +35,30 @@ export class ColorService implements ColorInterface {
   //   return colors;
   // }
 
-  addBaseColors() {
-    this.colorManagerService.addFromPalette('primary');
-    this.colorManagerService.addFromPalette('secondary');
-    this.colorManagerService.addFromPalette('tertiary');
-
-    const colors = defaultColors(this.colorManagerService);
-    Object.keys(colors).map((key) => {
-      const color: Partial<ColorOptions> | undefined =
-        colors[key as DynamicColorKey];
-      if (!color) return;
-      return this.colorManagerService.createOrUpdate(key, color);
-    });
-  }
-
-  addColor(key: string, color: ColorOptions): ColorEntity {
+  addColor(key: string, color: Partial<ColorOptions>): ColorEntity {
     return this.colorManagerService.createOrUpdate(key, color);
   }
 
-  addColors(colors: Record<string, ColorOptions>): ColorEntity[] {
-    return Object.keys(colors).map((key) => this.addColor(key, colors[key]));
+  addColors(args: AddColorsOptions | AddColorsOptions[]) {
+    const colorsEntity: ColorEntity[] = [];
+    if (!Array.isArray(args)) args = [args];
+    args.forEach((args) => {
+      if (typeof args === 'function') {
+        args = args(this);
+      }
+      if (args.fromPalettes) {
+        if (!Array.isArray(args.fromPalettes))
+          args.fromPalettes = [args.fromPalettes];
+        args.fromPalettes.map((paletteKey) => {
+          this.colorManagerService.addFromPalette(paletteKey);
+        });
+      }
+      if (args.colors) {
+        Object.keys(args.colors).map((key) =>
+          this.addColor(key, args.colors![key])
+        );
+      }
+    });
   }
 
   getColor(key: string): ColorEntity {
