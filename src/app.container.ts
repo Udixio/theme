@@ -9,6 +9,7 @@ import { ColorModule } from './color/color.module';
 import { ThemeModule } from './theme/theme.module';
 import { AppModule } from './app.module';
 import { ConfigModule } from './config/config.module';
+import { PluginModule } from './plugin/plugin.module';
 
 export type Module = Record<
   string,
@@ -32,8 +33,9 @@ const AppContainer = createContainer({
 });
 
 importContainer(AppContainer, [
-  AppModule,
   ConfigModule,
+  AppModule,
+  PluginModule,
   ColorModule,
   ThemeModule,
 ]);

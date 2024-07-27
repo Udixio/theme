@@ -1,22 +1,22 @@
-import { ColorService } from './color/services/color.service';
-import { ThemeService } from './theme/services/theme.service';
-import { ConfigService } from './config';
+import { ColorService } from './color';
+import { ThemeService } from './theme';
+import { PluginService } from './plugin/plugin.service';
 
 export class AppService {
   public colorService: ColorService;
   public themeService: ThemeService;
-  public configService: ConfigService;
+  public pluginService: PluginService;
 
   constructor({
     colorService,
     themeService,
-    configService,
+    pluginService,
   }: {
     colorService: ColorService;
     themeService: ThemeService;
-    configService: ConfigService;
+    pluginService: PluginService;
   }) {
-    this.configService = configService;
+    this.pluginService = pluginService;
     this.colorService = colorService;
     this.themeService = themeService;
   }

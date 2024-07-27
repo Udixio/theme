@@ -21,7 +21,7 @@ export class ColorService implements ColorInterface {
     this.colorManagerService = colorManagerService;
   }
 
-  getAllColors() {
+  getColors() {
     return this.colorManagerService.getAll();
   }
 

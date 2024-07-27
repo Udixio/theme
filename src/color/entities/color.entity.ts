@@ -21,6 +21,14 @@ export interface ColorOptions {
   };
 }
 
+function argbToRgb(argb: number): { r: number; g: number; b: number } {
+  return {
+    r: (argb >> 16) & 0xff,
+    g: (argb >> 8) & 0xff,
+    b: argb & 0xff,
+  };
+}
+
 export class ColorEntity {
   private dynamicColor: DynamicColor | null = null;
 
@@ -41,6 +49,10 @@ export class ColorEntity {
 
   getArgb() {
     return this.getDynamicColor().getArgb(this.schemeService.get());
+  }
+
+  getRgb() {
+    return argbToRgb(this.getArgb());
   }
 
   getName(): string {

@@ -1,13 +1,14 @@
 import AppContainer from './app.container';
 import { AppService } from './app.service';
+import { ConfigService } from './config';
 
 export function bootstrap(): AppService {
   return AppContainer.resolve<AppService>('appService');
 }
 
 export async function bootstrapFromConfig(path?: string): Promise<AppService> {
-  const app = AppContainer.resolve<AppService>('appService');
-  if (path) app.configService.configPath = path;
-  await app.configService.loadConfig();
-  return app;
+  const configService = AppContainer.resolve<ConfigService>('configService');
+  if (path) configService.configPath = path;
+  await configService.loadConfig();
+  return AppContainer.resolve<AppService>('appService');
 }

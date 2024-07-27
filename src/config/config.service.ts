@@ -1,8 +1,9 @@
 import { ConfigInterface } from './config.interface';
 
 import { resolve } from 'path';
-import { ColorService, defaultColors } from '../color';
-import { ThemeService, VariantModel } from '../theme';
+import { defaultColors } from '../color';
+import { VariantModel } from '../theme';
+import { AppService } from '../app.service';
 
 export function defineConfig(configObject: ConfigInterface): ConfigInterface {
   if (!configObject || typeof configObject !== 'object') {
@@ -17,21 +18,14 @@ export function defineConfig(configObject: ConfigInterface): ConfigInterface {
 export class ConfigService {
   configPath = './theme.config.ts';
 
-  private colorService: ColorService;
-  private themeService: ThemeService;
+  private appService: AppService;
 
-  constructor({
-    colorService,
-    themeService,
-  }: {
-    colorService: ColorService;
-    themeService: ThemeService;
-  }) {
-    this.colorService = colorService;
-    this.themeService = themeService;
+  constructor({ appService }: { appService: AppService }) {
+    this.appService = appService;
   }
 
   public async loadConfig(): Promise<void> {
+    const { themeService, colorService, pluginService } = this.appService;
     const {
       sourceColor,
       contrastLevel = 0,
@@ -40,8 +34,9 @@ export class ConfigService {
       palettes,
       colors,
       useDefaultColors = true,
+      plugins,
     } = await this.getConfig();
-    this.themeService.create({
+    themeService.create({
       contrastLevel: contrastLevel,
       isDark: isDark,
       sourceColorHex: sourceColor,
@@ -49,14 +44,18 @@ export class ConfigService {
     });
     if (palettes) {
       Object.entries(palettes).forEach(([key, value]) =>
-        this.themeService.addCustomPalette(key, value)
+        themeService.addCustomPalette(key, value)
       );
     }
     if (useDefaultColors) {
-      this.colorService.addColors(defaultColors);
+      colorService.addColors(defaultColors);
     }
     if (colors) {
-      this.colorService.addColors(colors);
+      colorService.addColors(colors);
+    }
+    if (plugins) {
+      plugins.forEach((plugin) => pluginService.addPlugin(plugin));
+      pluginService.loadPlugins(this.appService);
     }
   }
 

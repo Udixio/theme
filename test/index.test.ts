@@ -11,12 +11,17 @@ import {
   sanitizeDegreesDouble,
   TonalPalette,
 } from '@material/material-color-utilities';
+import { createTheme } from '../src/plugins/tailwind/main';
 
 describe('AppController (e2e)', () => {
+  it('ffr', async () => {
+    console.log(await createTheme());
+  });
+
   it('ff', async () => {
     const { colorService, themeService } = await bootstrapFromConfig();
     console.log(
-      [...colorService.getAllColors().values()].map((colorEntity) => ({
+      [...colorService.getColors().values()].map((colorEntity) => ({
         name: colorEntity.getName(),
         hex: colorEntity.getHex(),
       }))
@@ -164,7 +169,7 @@ describe('AppController (e2e)', () => {
     });
 
     console.log(
-      [...colorService.getAllColors().values()].map((colorEntity) => ({
+      [...colorService.getColors().values()].map((colorEntity) => ({
         name: colorEntity.getName(),
         hex: colorEntity.getHex(),
       }))

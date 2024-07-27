@@ -1,5 +1,7 @@
 import { VariantEntity } from '../theme';
 import { AddColorsOptions } from '../color';
+import { PluginAbstract } from '../plugin/plugin.abstract';
+import { AppService } from '../app.service';
 
 export interface ConfigInterface {
   sourceColor: string;
@@ -9,4 +11,5 @@ export interface ConfigInterface {
   colors?: AddColorsOptions | AddColorsOptions[];
   useDefaultColors?: boolean;
   palettes?: Record<string, string>;
+  plugins?: (new (appService: AppService) => PluginAbstract)[];
 }
