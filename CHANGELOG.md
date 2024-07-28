@@ -1,3 +1,11 @@
+# [1.0.0-beta.8](https://github.com/Udixio/theme/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-07-28)
+
+
+### Features
+
+* add custom palettes and config module ([a0f3518](https://github.com/Udixio/theme/commit/a0f35183f390a9b066eb8e2acc8f7fb87e788121))
+* add plugin architecture with PluginService for extensibility ([f79985d](https://github.com/Udixio/theme/commit/f79985d0b95ef41767595ed52519f074c6f6a8b9))
+
 # [1.0.0-beta.7](https://github.com/Udixio/theme/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2024-07-25)
 
 
