@@ -15,7 +15,7 @@ import { createTheme } from '../src/plugins/tailwind/main';
 
 describe('AppController (e2e)', () => {
   it('ffr', async () => {
-    console.log(await createTheme());
+    console.log(createTheme());
   });
 
   it('ff', async () => {

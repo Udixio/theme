@@ -6,9 +6,9 @@ export function bootstrap(): AppService {
   return AppContainer.resolve<AppService>('appService');
 }
 
-export async function bootstrapFromConfig(path?: string): Promise<AppService> {
+export function bootstrapFromConfig(path?: string): AppService {
   const configService = AppContainer.resolve<ConfigService>('configService');
   if (path) configService.configPath = path;
-  await configService.loadConfig();
+  configService.loadConfig();
   return AppContainer.resolve<AppService>('appService');
 }

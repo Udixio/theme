@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import { defaultColors } from '../color';
 import { VariantModel } from '../theme';
 import { AppService } from '../app.service';
+import { existsSync } from 'node:fs';
 
 export function defineConfig(configObject: ConfigInterface): ConfigInterface {
   if (!configObject || typeof configObject !== 'object') {
@@ -24,7 +25,7 @@ export class ConfigService {
     this.appService = appService;
   }
 
-  public async loadConfig(): Promise<void> {
+  public loadConfig(): void {
     const { themeService, colorService, pluginService } = this.appService;
     const {
       sourceColor,
@@ -35,7 +36,7 @@ export class ConfigService {
       colors,
       useDefaultColors = true,
       plugins,
-    } = await this.getConfig();
+    } = this.getConfig();
     themeService.create({
       contrastLevel: contrastLevel,
       isDark: isDark,
@@ -65,9 +66,23 @@ export class ConfigService {
     }
   }
 
-  private async getConfig(): Promise<ConfigInterface> {
-    const path = resolve(this.configPath);
-    const configImport = await import(path);
+  private getConfig(): ConfigInterface {
+    const base = resolve(this.configPath);
+    const extensions = ['.js', '.ts', '.jms', '.jcs'];
+    let configImport = null;
+
+    for (const ext of extensions) {
+      const path = base + ext;
+      if (existsSync(path)) {
+        configImport = require(path);
+        break;
+      }
+    }
+
+    if (!configImport) {
+      throw new Error('Configuration file not found');
+    }
+
     const config: unknown = configImport.default;
     return config as ConfigInterface;
   }

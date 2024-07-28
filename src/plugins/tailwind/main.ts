@@ -8,8 +8,8 @@ export type Theme = {
   plugins: Partial<PluginsConfig>;
 };
 
-export const createTheme = async (): Promise<Theme> => {
-  const app = await bootstrapFromConfig();
+export const createTheme = (): Theme => {
+  const app = bootstrapFromConfig();
   const plugin = app.pluginService.getPlugin(TailwindPlugin);
   if (!plugin) {
     throw new Error('Tailwind plugin not found');
