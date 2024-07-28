@@ -3,8 +3,12 @@
   "version": "1.0.0-beta.12",
   "license": "MIT",
   "author": "vigreux-joël",
-  "main": "dist/index.js",
-  "module": "dist/theme.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/theme.esm.js",
+      "require": "./dist/index.js"
+    }
+  },
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
