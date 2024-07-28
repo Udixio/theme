@@ -1,3 +1,10 @@
+# [1.0.0-beta.11](https://github.com/Udixio/theme/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2024-07-28)
+
+
+### Features
+
+* add tailwindcss-themer to dependencies ([66fc0e6](https://github.com/Udixio/theme/commit/66fc0e6d44066a5ff5b920dd262793bc246dd184))
+
 # [1.0.0-beta.10](https://github.com/Udixio/theme/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-07-28)
 
 
