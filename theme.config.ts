@@ -1,7 +1,7 @@
-import { defineConfig } from './src';
-import { TailwindPlugin } from './src/plugins/tailwind/Tailwind.plugin';
+const defineConfig = require('./src').defineConfig;
+const TailwindPlugin = require('./src').TailwindPlugin;
 
-export default defineConfig({
+module.exports = defineConfig({
   sourceColor: '#0965EC',
   colors: {
     fromPalettes: 'success',

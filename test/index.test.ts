@@ -3,6 +3,7 @@ import {
   bootstrap,
   bootstrapFromConfig,
   ContrastCurve,
+  createTheme,
   defaultColors,
   ToneDeltaPair,
   VariantEntity,
@@ -11,7 +12,6 @@ import {
   sanitizeDegreesDouble,
   TonalPalette,
 } from '@material/material-color-utilities';
-import { createTheme } from '../src/plugins/tailwind/main';
 
 describe('AppController (e2e)', () => {
   it('ffr', async () => {

@@ -83,7 +83,13 @@ export class ConfigService {
       throw new Error('Configuration file not found');
     }
 
-    const config: unknown = configImport.default;
+    let config: unknown;
+    if ('default' in configImport) {
+      config = configImport.default;
+    } else {
+      config = configImport;
+    }
+
     return config as ConfigInterface;
   }
 }
