@@ -1,3 +1,10 @@
+# [1.0.0-beta.14](https://github.com/Udixio/theme/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-07-28)
+
+
+### Features
+
+* update package exports for better module resolution ([537ade3](https://github.com/Udixio/theme/commit/537ade3b1c47759956cc0d68ce3b20ab5e7042cb))
+
 # [1.0.0-beta.13](https://github.com/Udixio/theme/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-07-28)
 
 
