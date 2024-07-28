@@ -1,3 +1,10 @@
+# [1.0.0-beta.16](https://github.com/Udixio/theme/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2024-07-28)
+
+
+### Features
+
+* refactor configuration import handling ([c743df0](https://github.com/Udixio/theme/commit/c743df06c5d95fb01c2816f222075b0f024297ef))
+
 # [1.0.0-beta.15](https://github.com/Udixio/theme/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-07-28)
 
 
