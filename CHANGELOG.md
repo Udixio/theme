@@ -1,3 +1,10 @@
+# [1.0.0-beta.7](https://github.com/Udixio/theme/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2024-07-25)
+
+
+### Features
+
+* remove merge-deep ([8a97270](https://github.com/Udixio/theme/commit/8a972708b60e389358d747cf80d8deb2207535ea))
+
 # [1.0.0-beta.6](https://github.com/Udixio/theme/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2024-07-25)
 
 
