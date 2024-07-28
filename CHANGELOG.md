@@ -1,3 +1,10 @@
+# [1.0.0-beta.15](https://github.com/Udixio/theme/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-07-28)
+
+
+### Features
+
+* update type declaration entry in package.json ([dc80c7e](https://github.com/Udixio/theme/commit/dc80c7e1d643359c2dc5a61cde35fcd9d4c225a0))
+
 # [1.0.0-beta.14](https://github.com/Udixio/theme/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-07-28)
 
 
