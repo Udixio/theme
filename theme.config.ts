@@ -1,4 +1,5 @@
 import { defineConfig } from './src';
+import { TailwindPlugin } from './src/plugins/tailwind/Tailwind.plugin';
 
 export default defineConfig({
   sourceColor: '#0965EC',
@@ -8,4 +9,12 @@ export default defineConfig({
   palettes: {
     success: '#4CAF50',
   },
+  plugins: [
+    [
+      TailwindPlugin,
+      TailwindPlugin.config({
+        darkMode: 'class',
+      }),
+    ],
+  ],
 });
