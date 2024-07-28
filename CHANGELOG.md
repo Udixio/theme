@@ -1,3 +1,10 @@
+# [1.0.0-beta.13](https://github.com/Udixio/theme/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-07-28)
+
+
+### Features
+
+* remove async/await from configuration and theme functions ([eed2f93](https://github.com/Udixio/theme/commit/eed2f93ce5fe847f71e9aa83e26db000a848e52d))
+
 # [1.0.0-beta.12](https://github.com/Udixio/theme/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-07-28)
 
 
