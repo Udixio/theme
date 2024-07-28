@@ -1,3 +1,10 @@
+# [1.0.0-beta.10](https://github.com/Udixio/theme/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-07-28)
+
+
+### Features
+
+* add exports for newly created and existing modules ([6f4309e](https://github.com/Udixio/theme/commit/6f4309efa9c2c710a1e3d643417aa38b13bb2a4e))
+
 # [1.0.0-beta.9](https://github.com/Udixio/theme/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2024-07-28)
 
 
