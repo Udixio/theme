@@ -16,7 +16,7 @@ export function defineConfig(configObject: ConfigInterface): ConfigInterface {
 }
 
 export class ConfigService {
-  configPath = './theme.config.ts';
+  configPath = './theme.config';
 
   private appService: AppService;
 
