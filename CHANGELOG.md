@@ -1,3 +1,10 @@
+# [1.0.0-beta.9](https://github.com/Udixio/theme/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2024-07-28)
+
+
+### Features
+
+* add Tailwind CSS theming support with tailwindcss-themer ([4ac504a](https://github.com/Udixio/theme/commit/4ac504a35e9aba685dd420646d6c68df4cfa8ac1))
+
 # [1.0.0-beta.8](https://github.com/Udixio/theme/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-07-28)
 
 
