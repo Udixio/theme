@@ -3,12 +3,16 @@ import { AppService } from '../../app.service';
 import { Theme } from './main';
 import { state } from './plugins-tailwind/state';
 import { themer } from './plugins-tailwind/themer';
+import { FontPlugin } from '../font/font.plugin';
+import { font } from './plugins-tailwind/font';
 
 interface TailwindPluginOptions {
   darkMode: 'class' | 'media';
+  responsiveBreakPoints: Record<string, number>;
 }
 
 export class TailwindPlugin extends PluginAbstract {
+  static dependencies = [FontPlugin];
   constructor(
     protected appService: AppService,
     protected options: TailwindPluginOptions
@@ -39,14 +43,17 @@ export class TailwindPlugin extends PluginAbstract {
         colors[newKey][isDark ? 'dark' : 'light'] = value.getHex();
       }
     }
-    console.log(colors);
 
+    const { fontStyles, fontFamily } = this.appService.pluginService
+      .getPlugin(FontPlugin)
+      .getFonts();
     return {
       colors: {},
-      fontFamily: { expressive: [], neutral: [] },
+      fontFamily: fontFamily,
       plugins: [
         state(Object.keys(colors)),
         themer(colors, this.options.darkMode),
+        font(fontStyles, this.options.responsiveBreakPoints),
       ],
     };
   }

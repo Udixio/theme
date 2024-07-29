@@ -1,6 +1,6 @@
 import { PluginsConfig } from 'tailwindcss/types/config';
 import { bootstrapFromConfig } from '../../main';
-import { TailwindPlugin } from './Tailwind.plugin';
+import { TailwindPlugin } from './tailwind.plugin';
 
 export type Theme = {
   colors: Record<string, string>;

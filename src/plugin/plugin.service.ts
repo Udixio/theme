@@ -1,10 +1,10 @@
 import { PluginAbstract } from './plugin.abstract';
 import { AppService } from '../app.service';
 
-export type PluginConstructor = new (
+export type PluginConstructor = (new (
   appService: AppService,
   options: any
-) => PluginAbstract;
+) => PluginAbstract) & { dependencies: PluginConstructor[] };
 
 export class PluginService {
   private pluginInstances = new Map<string, PluginAbstract>();
@@ -15,9 +15,27 @@ export class PluginService {
   }
 
   public loadPlugins(appService: AppService) {
-    this.pluginConstructors.forEach(([plugin, option]) => {
-      this.pluginInstances.set(plugin.name, new plugin(appService, option));
-    });
+    const plugins = new Map(this.pluginConstructors);
+
+    let size = 0;
+    do {
+      size = plugins.size;
+      plugins.forEach(([plugin, option], key) => {
+        const deps = plugin.dependencies.filter(
+          (dep) => !this.pluginInstances.has(dep.name)
+        );
+        if (deps.length === 0) {
+          this.pluginInstances.set(plugin.name, new plugin(appService, option));
+          plugins.delete(key);
+        }
+      });
+    } while (plugins.size != 0 && plugins.size < size);
+
+    if (plugins.size > 0)
+      console.log(
+        "Some plugins couldn't be loaded due to missing dependencies: ",
+        Array.from(plugins.keys())
+      );
   }
 
   public getPlugin<T extends PluginAbstract>(
