@@ -1,3 +1,10 @@
+# [1.0.0-beta.17](https://github.com/Udixio/theme/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-07-29)
+
+
+### Features
+
+* add font plugin integration with Tailwind CSS ([40c00e6](https://github.com/Udixio/theme/commit/40c00e621dd23933242eda57c92dbab3913a0c72))
+
 # [1.0.0-beta.16](https://github.com/Udixio/theme/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2024-07-28)
 
 
