@@ -56,8 +56,8 @@ export class TailwindPlugin extends PluginAbstract {
       fontFamily: fontFamily,
       plugins: [
         state(Object.keys(colors)),
-        themer(colors, this.options.darkMode),
-        font(fontStyles, this.options.responsiveBreakPoints),
+        themer(colors, this.options.darkMode!),
+        font(fontStyles, this.options.responsiveBreakPoints!),
       ],
     };
   }
