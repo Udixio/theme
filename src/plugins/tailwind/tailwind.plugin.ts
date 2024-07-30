@@ -7,8 +7,8 @@ import { FontPlugin } from '../font/font.plugin';
 import { font } from './plugins-tailwind/font';
 
 interface TailwindPluginOptions {
-  darkMode: 'class' | 'media';
-  responsiveBreakPoints: Record<string, number>;
+  darkMode?: 'class' | 'media';
+  responsiveBreakPoints?: Record<string, number>;
 }
 
 export class TailwindPlugin extends PluginAbstract {
@@ -17,6 +17,10 @@ export class TailwindPlugin extends PluginAbstract {
     protected appService: AppService,
     protected options: TailwindPluginOptions
   ) {
+    options.darkMode ??= 'class';
+    options.responsiveBreakPoints ??= {
+      lg: 1.125,
+    };
     super();
   }
   static config(options: TailwindPluginOptions): TailwindPluginOptions {
