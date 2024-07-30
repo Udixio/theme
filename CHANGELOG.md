@@ -1,3 +1,10 @@
+# [1.0.0-beta.22](https://github.com/Udixio/theme/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2024-07-30)
+
+
+### Features
+
+* add optional config parameter to config loading ([1bfd8a0](https://github.com/Udixio/theme/commit/1bfd8a03fb625a043ff7b6e36fcc3ca9062ca7da))
+
 # [1.0.0-beta.21](https://github.com/Udixio/theme/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2024-07-30)
 
 
