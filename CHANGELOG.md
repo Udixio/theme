@@ -1,3 +1,11 @@
+# [1.0.0-beta.19](https://github.com/Udixio/theme/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-07-30)
+
+
+### Bug Fixes
+
+* optional options in Tailwind plugin constructor ([0637a39](https://github.com/Udixio/theme/commit/0637a390ed0f037ed69a6acc44824c63cd8a588d))
+* optional options in Tailwind plugin constructor ([28035f9](https://github.com/Udixio/theme/commit/28035f9b9b02053d5d5b497d0ca0c60b9b0315fa))
+
 # [1.0.0-beta.18](https://github.com/Udixio/theme/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-07-30)
 
 
