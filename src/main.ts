@@ -1,14 +1,17 @@
 import AppContainer from './app.container';
 import { AppService } from './app.service';
-import { ConfigService } from './config';
+import { ConfigInterface, ConfigService } from './config';
 
 export function bootstrap(): AppService {
   return AppContainer.resolve<AppService>('appService');
 }
 
-export function bootstrapFromConfig(path?: string): AppService {
+export function bootstrapFromConfig(args?: {
+  path?: string;
+  config?: ConfigInterface;
+}): AppService {
   const configService = AppContainer.resolve<ConfigService>('configService');
-  if (path) configService.configPath = path;
-  configService.loadConfig();
+  if (args?.path) configService.configPath = args.path;
+  configService.loadConfig(args?.config);
   return AppContainer.resolve<AppService>('appService');
 }

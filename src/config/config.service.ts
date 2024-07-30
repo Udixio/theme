@@ -25,7 +25,7 @@ export class ConfigService {
     this.appService = appService;
   }
 
-  public loadConfig(): void {
+  public loadConfig(config?: ConfigInterface): void {
     const { themeService, colorService, pluginService } = this.appService;
     const {
       sourceColor,
@@ -36,7 +36,7 @@ export class ConfigService {
       colors,
       useDefaultColors = true,
       plugins,
-    } = this.getConfig();
+    } = config ?? this.getConfig();
     themeService.create({
       contrastLevel: contrastLevel,
       isDark: isDark,
