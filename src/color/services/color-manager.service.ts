@@ -99,7 +99,7 @@ export class ColorManagerService {
         new ToneDeltaPair(
           this.get(colorKeyContainer).getDynamicColor(),
           this.get(colorKey).getDynamicColor(),
-          15,
+          10,
           'nearer',
           false
         ),
@@ -124,7 +124,7 @@ export class ColorManagerService {
         new ToneDeltaPair(
           this.get(colorKeyContainer).getDynamicColor(),
           this.get(colorKey).getDynamicColor(),
-          15,
+          10,
           'nearer',
           false
         ),
