@@ -1,3 +1,10 @@
+# [1.0.0-beta.18](https://github.com/Udixio/theme/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-07-30)
+
+
+### Features
+
+* add font plugin to the exports ([5d76871](https://github.com/Udixio/theme/commit/5d768713e89f4731751a59929acaa515e5e7a0d8))
+
 # [1.0.0-beta.17](https://github.com/Udixio/theme/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-07-29)
 
 
