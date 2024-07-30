@@ -1,3 +1,10 @@
+# [1.0.0-beta.20](https://github.com/Udixio/theme/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2024-07-30)
+
+
+### Features
+
+* enhance createTheme function to include AppService ([9c96549](https://github.com/Udixio/theme/commit/9c96549c3773e5e6d4c903baea56587b6476bd66))
+
 # [1.0.0-beta.19](https://github.com/Udixio/theme/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-07-30)
 
 
