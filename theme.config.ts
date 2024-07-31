@@ -11,6 +11,9 @@ module.exports = defineConfig({
       TailwindPlugin,
       TailwindPlugin.config({
         darkMode: 'class',
+        subThemes: {
+          green: '#00FF00',
+        },
       }),
     ],
   ],

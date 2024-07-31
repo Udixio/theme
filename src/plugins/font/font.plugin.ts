@@ -1,5 +1,5 @@
-import { PluginAbstract } from '../../plugin';
 import { AppService } from '../../app.service';
+import { PluginAbstract } from '../../plugin';
 
 export enum FontFamily {
   Expressive = 'expressive',
