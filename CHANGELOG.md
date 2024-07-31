@@ -1,3 +1,10 @@
+# [1.0.0-beta.24](https://github.com/Udixio/theme/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2024-07-31)
+
+
+### Features
+
+* add support for sub-themes in TailwindPlugin ([ab683a8](https://github.com/Udixio/theme/commit/ab683a87f49fa7ce40a77470c44f828f4c0e70f8))
+
 # [1.0.0-beta.23](https://github.com/Udixio/theme/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2024-07-31)
 
 
