@@ -4,7 +4,7 @@ import { PluginConstructor } from '../plugin/plugin.service';
 
 export interface ConfigInterface {
   sourceColor: string;
-  contrastLevel?: 0;
+  contrastLevel?: number;
   isDark?: boolean;
   variant?: VariantEntity;
   colors?: AddColorsOptions | AddColorsOptions[];
