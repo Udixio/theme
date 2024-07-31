@@ -31,7 +31,10 @@ function createSubTheme({
             '[data-theme="dark"].theme-' + name,
           ]
         : ['.theme-' + name],
-    mediaQuery: '@media (prefers-color-scheme: dark)',
+    mediaQuery:
+      isDarkTheme && darkMode === 'media'
+        ? '@media (prefers-color-scheme: dark)'
+        : undefined,
     extend: {
       colors: colors,
     },
