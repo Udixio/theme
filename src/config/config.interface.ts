@@ -1,6 +1,6 @@
 import { VariantEntity } from '../theme';
 import { AddColorsOptions } from '../color';
-import { PluginConstructor } from '../plugin/plugin.service';
+import { PluginConstructor } from '../plugin';
 
 export interface ConfigInterface {
   sourceColor: string;

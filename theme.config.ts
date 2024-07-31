@@ -1,4 +1,4 @@
-import { FontPlugin } from './src/plugins/font/font.plugin';
+import { FontPlugin } from './src';
 
 const defineConfig = require('./src').defineConfig;
 const TailwindPlugin = require('./src').TailwindPlugin;
