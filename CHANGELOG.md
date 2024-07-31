@@ -1,3 +1,10 @@
+# [1.0.0-beta.23](https://github.com/Udixio/theme/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2024-07-31)
+
+
+### Features
+
+* change primary color and update config interface ([11b6f2f](https://github.com/Udixio/theme/commit/11b6f2f79c12bb57cec8d17d4423e5f9a7a15638))
+
 # [1.0.0-beta.22](https://github.com/Udixio/theme/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2024-07-30)
 
 
