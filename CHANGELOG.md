@@ -1,3 +1,10 @@
+# [1.0.0-beta.26](https://github.com/Udixio/theme/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2024-08-02)
+
+
+### Features
+
+* refactor plugin architecture and add Tailwind sub-themes ([34c4a4f](https://github.com/Udixio/theme/commit/34c4a4f7ccd6b33ecfb0d7695e5d7782fbdee584))
+
 # [1.0.0-beta.25](https://github.com/Udixio/theme/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2024-07-31)
 
 
