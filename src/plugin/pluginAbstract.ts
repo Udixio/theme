@@ -23,6 +23,7 @@ export abstract class PluginAbstract<
 
   public init(appService: AppService) {
     this.pluginInstance = new this.pluginClass(appService, this.options);
+    this.pluginInstance.onInit();
     return this;
   }
 
