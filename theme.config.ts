@@ -1,20 +1,15 @@
-import { FontPlugin } from './src';
-
-const defineConfig = require('./src').defineConfig;
-const TailwindPlugin = require('./src').TailwindPlugin;
+import { defineConfig, FontPlugin } from './src';
+import { TailwindPlugin } from './src/plugins/tailwind/tailwind.plugin';
 
 module.exports = defineConfig({
   sourceColor: '#68548E',
   plugins: [
-    FontPlugin,
-    [
-      TailwindPlugin,
-      TailwindPlugin.config({
-        darkMode: 'class',
-        subThemes: {
-          green: '#00FF00',
-        },
-      }),
-    ],
+    new FontPlugin({}),
+    new TailwindPlugin({
+      darkMode: 'class',
+      subThemes: {
+        green: '#00FF00',
+      },
+    }),
   ],
 });

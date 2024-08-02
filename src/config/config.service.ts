@@ -56,11 +56,7 @@ export class ConfigService {
     }
     if (plugins) {
       plugins.forEach((plugin) => {
-        if (Array.isArray(plugin)) {
-          pluginService.addPlugin(plugin[0], plugin[1]);
-        } else {
-          pluginService.addPlugin(plugin, {});
-        }
+        pluginService.addPlugin(plugin);
       });
       pluginService.loadPlugins(this.appService);
     }

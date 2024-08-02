@@ -1,9 +1,9 @@
-import { PluginAbstract } from '../../plugin';
-import { AppService } from '../../app.service';
+import { PluginAbstract, PluginImplAbstract } from '../../plugin';
 import { Theme } from './main';
 import { state, themer } from './plugins-tailwind';
-import { FontPlugin } from '../font';
+
 import { font } from './plugins-tailwind/font';
+import { FontPlugin } from '../font';
 
 interface TailwindPluginOptions {
   darkMode?: 'class' | 'media';
@@ -11,21 +11,23 @@ interface TailwindPluginOptions {
   subThemes?: Record<string, string>;
 }
 
-export class TailwindPlugin extends PluginAbstract {
-  static dependencies = [FontPlugin];
-  constructor(
-    protected appService: AppService,
-    protected options: TailwindPluginOptions
-  ) {
-    options.darkMode ??= 'class';
-    options.responsiveBreakPoints ??= {
+export class TailwindPlugin extends PluginAbstract<
+  TailwindImplPlugin,
+  TailwindPluginOptions
+> {
+  public dependencies = [FontPlugin];
+  public name = 'tailwind';
+  pluginClass = TailwindImplPlugin;
+}
+
+class TailwindImplPlugin extends PluginImplAbstract<TailwindPluginOptions> {
+  onInit() {
+    this.options.darkMode ??= 'class';
+    this.options.responsiveBreakPoints ??= {
       lg: 1.125,
     };
-    super();
   }
-  static config(options: TailwindPluginOptions): TailwindPluginOptions {
-    return options;
-  }
+
   getTheme(): Theme {
     const colors: Record<
       string,
@@ -50,6 +52,7 @@ export class TailwindPlugin extends PluginAbstract {
 
     const { fontStyles, fontFamily } = this.appService.pluginService
       .getPlugin(FontPlugin)
+      .getInstance()
       .getFonts();
     return {
       colors: {},

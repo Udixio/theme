@@ -19,7 +19,7 @@ describe('AppController (e2e)', () => {
   });
 
   it('ff', async () => {
-    const { colorService, themeService } = await bootstrapFromConfig();
+    const { colorService, themeService } = bootstrapFromConfig();
     console.log(
       [...colorService.getColors().values()].map((colorEntity) => ({
         name: colorEntity.getName(),

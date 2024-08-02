@@ -1,6 +1,6 @@
 import { AddColorsOptions } from '../color';
 import { VariantEntity } from '../theme';
-import { PluginConstructor } from '../plugin';
+import { PluginAbstract } from '../plugin';
 
 export interface ConfigInterface {
   sourceColor: string;
@@ -10,5 +10,5 @@ export interface ConfigInterface {
   colors?: AddColorsOptions | AddColorsOptions[];
   useDefaultColors?: boolean;
   palettes?: Record<string, string>;
-  plugins?: (PluginConstructor | [PluginConstructor, object])[];
+  plugins?: PluginAbstract<any, any>[];
 }

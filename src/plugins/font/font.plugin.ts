@@ -1,5 +1,4 @@
-import { AppService } from '../../app.service';
-import { PluginAbstract } from '../../plugin';
+import { PluginAbstract, PluginImplAbstract } from '../../plugin';
 
 export enum FontFamily {
   Expressive = 'expressive',
@@ -22,18 +21,58 @@ interface FontPluginOptions {
   fontStyles?: Partial<Record<FontRole, Record<FontSize, Partial<FontStyle>>>>;
 }
 
-export class FontPlugin extends PluginAbstract {
-  private readonly fontFamily: { expressive: string[]; neutral: string[] };
-  private readonly fontStyles: Record<FontRole, Record<FontSize, FontStyle>>;
+export class FontPlugin extends PluginAbstract<
+  FontPluginImpl,
+  FontPluginOptions
+> {
+  dependencies = [];
+  name = 'font';
+  pluginClass = FontPluginImpl;
+}
 
-  constructor(
-    protected appService: AppService,
-    protected options: FontPluginOptions
+class FontPluginImpl extends PluginImplAbstract<FontPluginOptions> {
+  private _fontFamily: { expressive: string[]; neutral: string[] } | undefined;
+
+  get fontFamily(): { expressive: string[]; neutral: string[] } {
+    if (!this._fontFamily) throw new Error('Font family not initialized');
+    return this._fontFamily;
+  }
+
+  set fontFamily(
+    value: { expressive: string[]; neutral: string[] } | undefined
   ) {
-    super();
+    this._fontFamily = value;
+  }
+
+  private _fontStyles:
+    | Record<FontRole, Record<FontSize, FontStyle>>
+    | undefined;
+
+  get fontStyles(): Record<FontRole, Record<FontSize, FontStyle>> {
+    if (!this._fontStyles) throw new Error('Font styles not initialized');
+    return this._fontStyles;
+  }
+
+  set fontStyles(
+    value: Record<FontRole, Record<FontSize, FontStyle>> | undefined
+  ) {
+    this._fontStyles = value;
+  }
+
+  getFonts() {
+    return {
+      fontStyles: this.fontStyles,
+      fontFamily: this.fontFamily,
+    };
+  }
+
+  onInit(): void {
     this.fontFamily = {
-      expressive: options?.fontFamily?.expressive ?? ['Roboto', 'sans-serif'],
-      neutral: options?.fontFamily?.neutral ?? ['Roboto', 'sans-serif'],
+      expressive: this.options?.fontFamily?.expressive ?? [
+        'Roboto',
+        'sans-serif',
+      ],
+      neutral: this.options?.fontFamily?.neutral ?? ['Roboto', 'sans-serif'],
     };
     this.fontStyles = {
       display: {
@@ -146,8 +185,9 @@ export class FontPlugin extends PluginAbstract {
         },
       },
     };
-    if (options && options.fontStyles)
-      Object.entries(options.fontStyles).forEach(([key, fontParam]) => {
+
+    if (this.options && this.options.fontStyles)
+      Object.entries(this.options.fontStyles).forEach(([key, fontParam]) => {
         const fontRole: FontRole = key as FontRole;
         Object.entries(fontParam).forEach(([size, fontStyle]) => {
           const fontSize: FontSize = size as FontSize;
@@ -159,14 +199,5 @@ export class FontPlugin extends PluginAbstract {
           }
         });
       });
-  }
-  static config(options: FontPluginOptions): FontPluginOptions {
-    return options;
-  }
-  getFonts() {
-    return {
-      fontStyles: this.fontStyles,
-      fontFamily: this.fontFamily,
-    };
   }
 }
