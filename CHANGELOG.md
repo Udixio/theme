@@ -1,3 +1,10 @@
+# [1.0.0-beta.25](https://github.com/Udixio/theme/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2024-07-31)
+
+
+### Features
+
+* update theme handling logic in Tailwind plugin ([0e6b242](https://github.com/Udixio/theme/commit/0e6b24275b46f41b65007dbc0730bb375630da47))
+
 # [1.0.0-beta.24](https://github.com/Udixio/theme/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2024-07-31)
 
 
