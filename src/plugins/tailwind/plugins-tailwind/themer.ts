@@ -30,7 +30,15 @@ function createSubTheme({
             '[data-theme="dark"] .theme-' + name,
             '[data-theme="dark"].theme-' + name,
           ]
-        : ['.theme-' + name],
+        : [
+            '.theme-' + name,
+            `.theme-${name} .light-mode`,
+            `.theme-${name} [data-theme="light"]`,
+            `.light-mode .theme-${name}`,
+            `.light-mode.theme-${name}`,
+            `[data-theme="light"] .theme-${name}`,
+            `[data-theme="light"].theme-${name}`,
+          ],
     mediaQuery:
       isDarkTheme && darkMode === 'media'
         ? '@media (prefers-color-scheme: dark)'
