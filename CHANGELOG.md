@@ -1,3 +1,10 @@
+# [1.0.0-beta.27](https://github.com/Udixio/theme/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2024-08-02)
+
+
+### Bug Fixes
+
+* invoke onInit method during plugin initialization ([916f62e](https://github.com/Udixio/theme/commit/916f62e4294439d127486a1648dd47edb18518a0))
+
 # [1.0.0-beta.26](https://github.com/Udixio/theme/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2024-08-02)
 
 
