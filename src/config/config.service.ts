@@ -1,10 +1,8 @@
 import { ConfigInterface } from './config.interface';
 
-import { resolve } from 'node:path';
 import { defaultColors } from '../color';
 import { VariantModel } from '../theme';
 import { AppService } from '../app.service';
-import { existsSync } from 'node:fs';
 
 export function defineConfig(configObject: ConfigInterface): ConfigInterface {
   if (!configObject || typeof configObject !== 'object') {
@@ -68,13 +66,18 @@ export class ConfigService {
       process.release &&
       process.release.name === 'node'
     ) {
-      const base = resolve(this.configPath);
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const path = require('path');
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const fs = require('fs');
+
+      const base = path.resolve(this.configPath);
       const extensions = ['.js', '.ts', '.jms', '.jcs'];
       let configImport = null;
 
       for (const ext of extensions) {
         const path = base + ext;
-        if (existsSync(path)) {
+        if (fs.existsSync(path)) {
           configImport = require(path);
           break;
         }
