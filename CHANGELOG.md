@@ -1,3 +1,10 @@
+# [1.0.0-beta.30](https://github.com/Udixio/theme/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2024-08-22)
+
+
+### Bug Fixes
+
+* config loading based on environment ([ecff7b8](https://github.com/Udixio/theme/commit/ecff7b8eec80b21b1b88f384f4a79c5f9f04bf69))
+
 # [1.0.0-beta.29](https://github.com/Udixio/theme/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2024-08-22)
 
 
