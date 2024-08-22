@@ -1,6 +1,6 @@
 import { ConfigInterface } from './config.interface';
 
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { defaultColors } from '../color';
 import { VariantModel } from '../theme';
 import { AppService } from '../app.service';
