@@ -1,3 +1,10 @@
+# [1.0.0-beta.28](https://github.com/Udixio/theme/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2024-08-07)
+
+
+### Features
+
+* add support for additional light mode theme selectors ([fb5a445](https://github.com/Udixio/theme/commit/fb5a445a26d59530b99218a515e1cfe4d9d352a2))
+
 # [1.0.0-beta.27](https://github.com/Udixio/theme/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2024-08-02)
 
 
