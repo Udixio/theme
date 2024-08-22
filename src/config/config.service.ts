@@ -63,29 +63,39 @@ export class ConfigService {
   }
 
   private getConfig(): ConfigInterface {
-    const base = resolve(this.configPath);
-    const extensions = ['.js', '.ts', '.jms', '.jcs'];
-    let configImport = null;
+    if (
+      typeof process !== 'undefined' &&
+      process.release &&
+      process.release.name === 'node'
+    ) {
+      const base = resolve(this.configPath);
+      const extensions = ['.js', '.ts', '.jms', '.jcs'];
+      let configImport = null;
 
-    for (const ext of extensions) {
-      const path = base + ext;
-      if (existsSync(path)) {
-        configImport = require(path);
-        break;
+      for (const ext of extensions) {
+        const path = base + ext;
+        if (existsSync(path)) {
+          configImport = require(path);
+          break;
+        }
       }
-    }
 
-    if (!configImport) {
-      throw new Error('Configuration file not found');
-    }
+      if (!configImport) {
+        throw new Error('Configuration file not found');
+      }
 
-    let config: unknown;
-    if ('default' in configImport) {
-      config = configImport.default;
+      let config: unknown;
+      if ('default' in configImport) {
+        config = configImport.default;
+      } else {
+        config = configImport;
+      }
+
+      return config as ConfigInterface;
     } else {
-      config = configImport;
+      throw new Error(
+        'You must provide configuration object when using this library in a browser.'
+      );
     }
-
-    return config as ConfigInterface;
   }
 }
