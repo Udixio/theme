@@ -1,3 +1,10 @@
+# [1.0.0-beta.31](https://github.com/Udixio/theme/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2024-08-22)
+
+
+### Bug Fixes
+
+* config.service.ts to use require for path and fs ([d648132](https://github.com/Udixio/theme/commit/d64813213ba422a6fb983e076eb5f1856a6f5aa5))
+
 # [1.0.0-beta.30](https://github.com/Udixio/theme/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2024-08-22)
 
 
