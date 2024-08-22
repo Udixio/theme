@@ -1,3 +1,10 @@
+# [1.0.0-beta.29](https://github.com/Udixio/theme/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2024-08-22)
+
+
+### Bug Fixes
+
+* refactor path module import ([6ad7efc](https://github.com/Udixio/theme/commit/6ad7efc6a133a9aef1e84cbaa3007da14520332b))
+
 # [1.0.0-beta.28](https://github.com/Udixio/theme/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2024-08-07)
 
 
